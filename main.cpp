@@ -9,6 +9,7 @@ struct Student{
     string pavarde;
     vector<int> nd;
     int egzaminas;
+    double galutinis;
 };
 
 void ived(Student &st){
@@ -32,14 +33,18 @@ void valymas(Student &Lok){
     Lok.nd.clear();
 }
 
-double Gal_Balas(Student &Lok){
+void Gal_Balas(Student &Lok){
     double sum = 0;
     for(int i = 0;i < Lok.nd.size();i++){
         sum += Lok.nd.at(i);
     }
     double vid = sum / Lok.nd.size();
-    double galutinis = 0.4*vid + Lok.egzaminas*0.6;
-    return galutinis;
+    Lok.galutinis = 0.4*vid + Lok.egzaminas*0.6;
+}
+
+void isvedimas(Student &Lok){
+    cout << setw(15) << fixed << left <<Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Lok.galutinis << endl;
+
 }
 
 int main(){
@@ -51,9 +56,16 @@ int main(){
     for(int i = 0;i < n;i++){
         cout << "Iveskite studento duomenis: " << endl;
         ived(Temp);
+        Gal_Balas(Temp);
         Vec1.push_back(Temp);
         valymas(Temp);
     }
+    cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
+    cout << string(50, '-') << endl;
+    for(int i = 0;i < n;i++){
+        isvedimas(Vec1.at(i));
+    }
+    system("pause");
     return 0;
 }
 
