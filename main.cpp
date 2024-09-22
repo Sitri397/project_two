@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 struct Student{
@@ -9,7 +10,6 @@ struct Student{
     string pavarde;
     vector<int> nd;
     int egzaminas;
-    double galutinis;
 };
 
 void ived(Student &st){
@@ -33,17 +33,42 @@ void valymas(Student &Lok){
     Lok.nd.clear();
 }
 
-void Gal_Balas(Student &Lok){
+double Gal_Balas_vid(Student &Lok){
     double sum = 0;
     for(int i = 0;i < Lok.nd.size();i++){
         sum += Lok.nd.at(i);
     }
     double vid = sum / Lok.nd.size();
-    Lok.galutinis = 0.4*vid + Lok.egzaminas*0.6;
+    double galutinis = 0.4*vid + Lok.egzaminas*0.6;
+    return galutinis;
+
 }
 
-void isvedimas(Student &Lok){
-    cout << setw(15) << fixed << left <<Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Lok.galutinis << endl;
+double Gal_Balas_med(Student &Lok){
+    vector<int> darbai = Lok.nd;
+    sort(darbai.begin(), darbai.end());
+    double mediana;
+    int size = darbai.size();
+
+    if (size % 2 == 0) {
+        mediana = (darbai[size / 2 - 1] + darbai[size / 2]) / 2.0;
+    } else {
+        mediana = darbai[size / 2];
+    }
+    double galutinis = 0.4 * mediana + 0.6 * Lok.egzaminas;
+
+    return galutinis;
+
+}
+
+void isvedimas(Student &Lok, char mode){
+    if(mode == 'v'){
+        cout << setw(15) << fixed << left <<Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Gal_Balas_vid(Lok) << endl;
+    }
+    else if(mode == 'm'){
+        cout << setw(15) << fixed << left <<Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Gal_Balas_med(Lok) << endl;
+    }
+
 
 }
 
@@ -56,14 +81,22 @@ int main(){
     for(int i = 0;i < n;i++){
         cout << "Iveskite studento duomenis: " << endl;
         ived(Temp);
-        Gal_Balas(Temp);
         Vec1.push_back(Temp);
         valymas(Temp);
     }
-    cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
-    cout << string(50, '-') << endl;
+    cout << "Pasirinkite galutinio balo skaiciavimo buda(v-vidurkis/m - mediana): " << endl;
+    char pasirinkimas;
+    cin >> pasirinkimas;
+    if(pasirinkimas == 'v'){
+        cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
+        cout << string(50, '-') << endl;
+    }
+    else if(pasirinkimas == 'm'){
+        cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
+        cout << string(50, '-') << endl;
+    }
     for(int i = 0;i < n;i++){
-        isvedimas(Vec1.at(i));
+        isvedimas(Vec1.at(i), pasirinkimas);
     }
     system("pause");
     return 0;
