@@ -13,16 +13,20 @@ struct Student{
 };
 
 void ived(Student &st){
+    string input;
+    int rezultatas;
+    int i = 1;
     cout << "Iveskite studento varda, pavarde ir egzamino rezultata: " << endl;
     cin >> st.vardas >> st.pavarde >> st.egzaminas;
-    cout << "Iveskite studento namu darbu skaiciu: " << endl;
-    int n;
-    int k;
-    cin >> n;
-    cout << "Iveskite namu darbu rezultatus: " << endl;
-    for(int i = 0;i < n;i++){
-      cin >> k;
-      st.nd.push_back(k);
+    cout << "Iveskite namu darbu rezultatus(du kartus enter uzbaigti)" << endl;
+    cin.ignore();
+    while(true){
+        cout << "Iveskite " << i << " namu darbu ivertinima(enter uzbaigti): " << endl;
+        getline(cin,input);
+        if(input.empty()) break;
+        rezultatas = stoi(input);
+        st.nd.push_back(rezultatas);
+        i++;
     }
 
 }
@@ -78,6 +82,7 @@ int main(){
     cout << "Kiek studentu?: " << endl;
     int n;
     cin >> n;
+    cin.ignore();
     for(int i = 0;i < n;i++){
         cout << "Iveskite studento duomenis: " << endl;
         ived(Temp);
