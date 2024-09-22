@@ -3,6 +3,7 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
+#include <random>
 using namespace std;
 
 struct Student{
@@ -15,13 +16,29 @@ struct Student{
 void ived(Student &st){
     string input;
     int rezultatas;
+    char pasirinkimas;
     int i = 1;
-    cout << "Iveskite studento varda, pavarde ir egzamino rezultata: " << endl;
-    cin >> st.vardas >> st.pavarde >> st.egzaminas;
-    cout << "Iveskite namu darbu rezultatus(-1 uzbaigti)" << endl;
-    while(cin >> rezultatas && rezultatas != -1){
-        st.nd.push_back(rezultatas);
+    cout << "Iveskite studento varda ir pavarde: " << endl;
+    cin >> st.vardas >> st.pavarde;
+    cout << "Ar sugeneruoti studento namu darbu ir egzamino rezultatus?(t/n): " << endl;
+    cin >> pasirinkimas;
+    if(pasirinkimas == 't'){
+        srand(time(nullptr));
+        for (int i = 0; i < 5; ++i) {
+            st.nd.push_back(rand() % 10 + 1);
+        }
+
+        st.egzaminas = rand() % 10 + 1;
     }
+    else if(pasirinkimas == 'n'){
+        cout << "Iveskite namu darbu rezultatus(-1 uzbaigti)" << endl;
+        while(cin >> rezultatas && rezultatas != -1){
+            st.nd.push_back(rezultatas);
+        }
+        cout << "Iveskite egzamino rezultata: " << endl;
+        cin >> st.egzaminas;
+    }
+
 
 }
 
@@ -59,6 +76,8 @@ double Gal_Balas_med(Student &Lok){
 
 }
 
+
+
 void isvedimas(Student &Lok, char mode){
     if(mode == 'v'){
         cout << setw(15) << fixed << left <<Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Gal_Balas_vid(Lok) << endl;
@@ -76,7 +95,7 @@ int main(){
     cout << "Kiek studentu?: " << endl;
     int n;
     cin >> n;
-    cin.ignore();
+    char pasirinkimas;
     for(int i = 0;i < n;i++){
         cout << "Iveskite studento duomenis: " << endl;
         ived(Temp);
@@ -84,7 +103,7 @@ int main(){
         valymas(Temp);
     }
     cout << "Pasirinkite galutinio balo skaiciavimo buda(v-vidurkis/m - mediana): " << endl;
-    char pasirinkimas;
+
     cin >> pasirinkimas;
     if(pasirinkimas == 'v'){
         cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
