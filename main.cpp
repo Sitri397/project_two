@@ -32,6 +32,16 @@ void valymas(Student &Lok){
     Lok.nd.clear();
 }
 
+double Gal_Balas(Student &Lok){
+    double sum = 0;
+    for(int i = 0;i < Lok.nd.size();i++){
+        sum += Lok.nd.at(i);
+    }
+    double vid = sum / Lok.nd.size();
+    double galutinis = 0.4*vid + Lok.egzaminas*0.6;
+    return galutinis;
+}
+
 int main(){
     vector<Student> Vec1;
     Student Temp;
