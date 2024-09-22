@@ -18,15 +18,9 @@ void ived(Student &st){
     int i = 1;
     cout << "Iveskite studento varda, pavarde ir egzamino rezultata: " << endl;
     cin >> st.vardas >> st.pavarde >> st.egzaminas;
-    cout << "Iveskite namu darbu rezultatus(du kartus enter uzbaigti)" << endl;
-    cin.ignore();
-    while(true){
-        cout << "Iveskite " << i << " namu darbu ivertinima(enter uzbaigti): " << endl;
-        getline(cin,input);
-        if(input.empty()) break;
-        rezultatas = stoi(input);
+    cout << "Iveskite namu darbu rezultatus(-1 uzbaigti)" << endl;
+    while(cin >> rezultatas && rezultatas != -1){
         st.nd.push_back(rezultatas);
-        i++;
     }
 
 }
