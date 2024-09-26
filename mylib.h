@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <random>
 #include <stdexcept>
+#include <sstream>
 
 using std::string;
 using std::vector;
