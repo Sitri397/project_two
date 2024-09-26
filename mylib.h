@@ -29,5 +29,6 @@ using std::left;
 using std::right;
 using std::getline;
 using std::exception;
+using std::invalid_argument;
 
 #endif // MYLIB_H_INCLUDED
