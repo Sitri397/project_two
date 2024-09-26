@@ -1,9 +1,11 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <iomanip>
 #include <algorithm>
 #include <random>
+#include <stdexcept>
 using namespace std;
 
 struct Student{
@@ -89,18 +91,75 @@ void isvedimas(Student &Lok, char mode){
 
 }
 
+void nuskaitymasIsFailo(vector<Student> &students,string failo_pavadinimas) {
+    ifstream inFile("studentai10000.txt");
+    if (!inFile) {
+        throw runtime_error("Neisejo atidaryti failo");
+    }
+
+    string line;
+
+
+    getline(inFile, line);
+
+    while (getline(inFile, line)) {
+        istringstream iss(line);
+        Student temp;
+        string vardas, pavarde;
+
+
+        iss >> vardas >> pavarde;
+        temp.vardas = vardas;
+        temp.pavarde = pavarde;
+
+
+        int rezultatas;
+        vector<int> nd;
+
+        while (iss >> rezultatas) {
+            nd.push_back(rezultatas);
+        }
+
+
+        if (!nd.empty()) {
+            temp.egzaminas = nd.back();
+            nd.pop_back();
+            temp.nd = nd;
+        } else {
+            throw runtime_error("Klaida: studentas neturi pazymiu: " + temp.vardas + " " + temp.pavarde);
+        }
+
+        students.push_back(temp);
+        temp.nd.clear();
+        temp.vardas.clear();
+        temp.pavarde.clear();
+    }
+
+    inFile.close();
+}
+
 int main(){
     vector<Student> Vec1;
     Student Temp;
     cout << "Kiek studentu?: " << endl;
     int n;
     cin >> n;
+    cout << "Norite nuskaityti is failo ar ivesti rankiniu budu?(n-nuskaityti/i-ivesti): " << endl;
     char pasirinkimas;
-    for(int i = 0;i < n;i++){
+    cin >> pasirinkimas;
+    if(pasirinkimas == 'n'){
+        string failo_pavadinimas;
+        cout << "Iveskite failo pavadinima: " << endl;
+        cin >> failo_pavadinimas;
+        nuskaitymasIsFailo(Vec1, failo_pavadinimas);
+    }
+    else if(pasirinkimas == 'i'){
+        for(int i = 0;i < n;i++){
         cout << "Iveskite studento duomenis: " << endl;
         ived(Temp);
         Vec1.push_back(Temp);
         valymas(Temp);
+        }
     }
     cout << "Pasirinkite galutinio balo skaiciavimo buda(v-vidurkis/m - mediana): " << endl;
 
