@@ -138,6 +138,17 @@ void nuskaitymasIsFailo(vector<Student> &students,string failo_pavadinimas) {
     inFile.close();
 }
 
+int comper(Student st1, Student st2){
+    if(st1.vardas < st2.vardas){
+        return st1.vardas < st2.vardas;
+    }
+    else if(st1.vardas == st2.vardas){
+        return st1.pavarde < st2.pavarde;
+    }
+}
+
+
+
 int main(){
     vector<Student> Vec1;
     Student Temp;
@@ -172,6 +183,7 @@ int main(){
         cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
         cout << string(50, '-') << endl;
     }
+    sort(Vec1.begin(), Vec1.end(), comper);
     for(int i = 0;i < n;i++){
         isvedimas(Vec1.at(i), pasirinkimas);
     }
