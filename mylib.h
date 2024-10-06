@@ -31,5 +31,8 @@ using std::right;
 using std::getline;
 using std::exception;
 using std::invalid_argument;
+using std::ofstream;
+using std::stringstream;
+using std::ostringstream;
 
 #endif // MYLIB_H_INCLUDED

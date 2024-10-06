@@ -12,6 +12,7 @@ int main(){
     cin >> pasirinkimas;
     if(pasirinkimas == 'n'){
         string failo_pavadinimas;
+        cout << system("dir *.txt") << endl;
         cout << "Iveskite failo pavadinima: " << endl;
         cin >> failo_pavadinimas;
         nuskaitymasIsFailo(Vec1, failo_pavadinimas);

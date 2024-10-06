@@ -91,11 +91,20 @@ double Gal_Balas_med(Student &Lok) {
 
 
 void isvedimas(Student &Lok, char mode) {
+    ostringstream ss;
     if (mode == 'v') {
-        cout << setw(15) << fixed << left << Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Gal_Balas_vid(Lok) << endl;
+        ss << setw(15) << fixed << left << Lok.vardas
+           << setw(15) << fixed << left << Lok.pavarde
+           << setw(3) << fixed << right << setprecision(2)
+           << Gal_Balas_vid(Lok) << endl;
     } else if (mode == 'm') {
-        cout << setw(15) << fixed << left << Lok.vardas << setw(15) << fixed << left << Lok.pavarde << setw(3) << fixed << right << setprecision(2) << Gal_Balas_med(Lok) << endl;
+        ss << setw(15) << fixed << left << Lok.vardas
+           << setw(15) << fixed << left << Lok.pavarde
+           << setw(3) << fixed << right << setprecision(2)
+           << Gal_Balas_med(Lok) << endl;
     }
+
+    cout << ss.str();
 }
 
 
@@ -105,10 +114,13 @@ void nuskaitymasIsFailo(vector<Student> &students, string failo_pavadinimas) {
         throw runtime_error("Neisejo atidaryti failo: " + failo_pavadinimas);
     }
 
+    stringstream FileStream;
+    FileStream << inFile.rdbuf();
+    inFile.close();
     string line;
-    getline(inFile, line);
+    getline(FileStream,line);
 
-    while (getline(inFile, line)) {
+    while (getline(FileStream, line)) {
         istringstream iss(line);
         Student temp;
         string vardas, pavarde;
@@ -135,7 +147,6 @@ void nuskaitymasIsFailo(vector<Student> &students, string failo_pavadinimas) {
         students.push_back(temp);
     }
 
-    inFile.close();
 }
 
 
