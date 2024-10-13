@@ -4,9 +4,7 @@
 int main(){
     vector<Student> Vec1;
     Student Temp;
-    cout << "Kiek studentu?: " << endl;
     int n;
-    cin >> n;
     cout << "Norite nuskaityti is failo ar ivesti rankiniu budu?(n-nuskaityti/i-ivesti): " << endl;
     char pasirinkimas;
     cin >> pasirinkimas;
@@ -15,9 +13,13 @@ int main(){
         cout << system("dir *.txt") << endl;
         cout << "Iveskite failo pavadinima: " << endl;
         cin >> failo_pavadinimas;
+        n = capacity_nustatymas(failo_pavadinimas);
+        Vec1.reserve(n);
         nuskaitymasIsFailo(Vec1, failo_pavadinimas);
     }
     else if(pasirinkimas == 'i'){
+        cout << "Kiek studentu?: " << endl;
+        cin >> n;
         for(int i = 0;i < n;i++){
         cout << "Iveskite studento duomenis: " << endl;
         ived(Temp);

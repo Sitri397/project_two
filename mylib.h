@@ -35,4 +35,5 @@ using std::ofstream;
 using std::stringstream;
 using std::ostringstream;
 
+
 #endif // MYLIB_H_INCLUDED

@@ -150,10 +150,29 @@ void nuskaitymasIsFailo(vector<Student> &students, string failo_pavadinimas) {
 }
 
 
-int comper(Student st1, Student st2) {
+int comper(Student& st1, Student& st2) {
     if (st1.vardas != st2.vardas) {
         return st1.vardas < st2.vardas;
     } else {
         return st1.pavarde < st2.pavarde;
     }
+}
+
+int capacity_nustatymas(string failo_pavadinimas){
+    int cap = 0;
+    ifstream inFile(failo_pavadinimas);
+    if (!inFile) {
+        throw runtime_error("Neisejo atidaryti failo: " + failo_pavadinimas);
+    }
+
+    stringstream FileStream;
+    FileStream << inFile.rdbuf();
+    inFile.close();
+    string line;
+    getline(FileStream,line);
+
+    while (getline(FileStream, line)) {
+        cap += 1;
+    }
+    return cap;
 }
