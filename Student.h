@@ -18,6 +18,7 @@ void isvedimas(Student &Lok, char mode);
 void nuskaitymasIsFailo(vector<Student> &students,string failo_pavadinimas);
 int comper(Student& st1, Student& st2);
 int capacity_nustatymas(string failo_pavadinimas);
+void generuotiFaila(const string& failoPavadinimas, int studentuSk);
 
 
 #endif // STUDENT_H_INCLUDED

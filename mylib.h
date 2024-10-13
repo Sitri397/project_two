@@ -34,6 +34,11 @@ using std::invalid_argument;
 using std::ofstream;
 using std::stringstream;
 using std::ostringstream;
+using std::cerr;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
+using std::to_string;
 
 
 #endif // MYLIB_H_INCLUDED

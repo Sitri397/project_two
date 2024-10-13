@@ -176,3 +176,38 @@ int capacity_nustatymas(string failo_pavadinimas){
     }
     return cap;
 }
+
+void generuotiFaila(const string& failoPavadinimas, int studentuSk) {
+    ofstream outFile(failoPavadinimas);
+
+    if (!outFile.is_open()) {
+        cerr << "Nepavyko atidaryti failo.\n";
+        return;
+    }
+
+
+    outFile << setw(20) << fixed << left << "Vardas" <<  fixed << left << setw(20) << "Pavarde";
+    for (int i = 1; i <= 15; ++i) {
+        outFile << setw(10) << fixed << left << "ND" + to_string(i);
+    }
+    outFile << setw(10)  << fixed << left << "Egz." << endl;
+
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distNd(1, 10);
+    uniform_int_distribution<> distEgz(1, 10);
+
+    for (int i = 1; i <= studentuSk; ++i) {
+        outFile << setw(20) << fixed << left << "Vardas" + to_string(i)
+                << setw(20) << fixed << left << "Pavarde" + to_string(i);
+
+        for (int j = 0; j < 15; ++j) {
+            outFile << setw(10) << fixed << left << distNd(gen);
+        }
+
+        outFile << setw(10) << fixed << left << distEgz(gen) << endl;
+    }
+
+    outFile.close();
+}

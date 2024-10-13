@@ -10,6 +10,16 @@ int main(){
     cin >> pasirinkimas;
     if(pasirinkimas == 'n'){
         string failo_pavadinimas;
+        cout << "Ar sugeneruoti failus?(t/n): " << endl;
+        cin >> pasirinkimas;
+        if(pasirinkimas == 't'){
+            generuotiFaila("stud1000.txt",1000);
+            generuotiFaila("stud10000.txt",10000);
+            generuotiFaila("stud100000.txt",100000);
+            generuotiFaila("stud1000000.txt",1000000);
+            generuotiFaila("stud10000000.txt",10000000);
+            cout << "Failai sugeneruoti sekmingai!" << endl;
+        }
         cout << system("dir *.txt") << endl;
         cout << "Iveskite failo pavadinima: " << endl;
         cin >> failo_pavadinimas;
