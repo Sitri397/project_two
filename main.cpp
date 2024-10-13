@@ -3,6 +3,8 @@
 
 int main(){
     vector<Student> Vec1;
+    vector<Student> nuskriaustukai;
+    vector<Student> galvociai;
     Student Temp;
     int n;
     cout << "Norite nuskaityti is failo ar ivesti rankiniu budu?(n-nuskaityti/i-ivesti): " << endl;
@@ -31,26 +33,33 @@ int main(){
         cout << "Kiek studentu?: " << endl;
         cin >> n;
         for(int i = 0;i < n;i++){
-        cout << "Iveskite studento duomenis: " << endl;
-        ived(Temp);
-        Vec1.push_back(Temp);
-        valymas(Temp);
+            cout << "Iveskite studento duomenis: " << endl;
+            ived(Temp);
+            Vec1.push_back(Temp);
+            valymas(Temp);
         }
     }
+    nuskriaustukai.reserve(n);
+    galvociai.reserve(n);
     cout << "Pasirinkite galutinio balo skaiciavimo buda(v-vidurkis/m - mediana): " << endl;
-
     cin >> pasirinkimas;
     if(pasirinkimas == 'v'){
+        for(int i = 0;i < n;i++){
+            Vec1[i].galutinis = Gal_Balas_vid(Vec1[i]);
+        }
         cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
         cout << string(50, '-') << endl;
     }
     else if(pasirinkimas == 'm'){
+        for(int i = 0;i < n;i++){
+            Vec1[i].galutinis = Gal_Balas_med(Vec1[i]);
+        }
         cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
         cout << string(50, '-') << endl;
     }
     sort(Vec1.begin(), Vec1.end(), comper);
     for(int i = 0;i < n;i++){
-        isvedimas(Vec1.at(i), pasirinkimas);
+        isvedimas(Vec1.at(i));
     }
     system("pause");
     return 0;

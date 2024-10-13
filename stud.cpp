@@ -90,19 +90,13 @@ double Gal_Balas_med(Student &Lok) {
 }
 
 
-void isvedimas(Student &Lok, char mode) {
+void isvedimas(Student &Lok) {
     ostringstream ss;
-    if (mode == 'v') {
-        ss << setw(15) << fixed << left << Lok.vardas
-           << setw(15) << fixed << left << Lok.pavarde
-           << setw(3) << fixed << right << setprecision(2)
-           << Gal_Balas_vid(Lok) << endl;
-    } else if (mode == 'm') {
-        ss << setw(15) << fixed << left << Lok.vardas
-           << setw(15) << fixed << left << Lok.pavarde
-           << setw(3) << fixed << right << setprecision(2)
-           << Gal_Balas_med(Lok) << endl;
-    }
+    ss << setw(15) << fixed << left << Lok.vardas
+        << setw(15) << fixed << left << Lok.pavarde
+        << setw(3) << fixed << right << setprecision(2)
+        << Lok.galutinis << endl;
+
 
     cout << ss.str();
 }
