@@ -26,7 +26,7 @@ int main(){
         cout << "Iveskite failo pavadinima: " << endl;
         cin >> failo_pavadinimas;
         n = capacity_nustatymas(failo_pavadinimas);
-        Vec1.reserve(n);
+        Vec1.reserve(n+1);
         nuskaitymasIsFailo(Vec1, failo_pavadinimas);
     }
     else if(pasirinkimas == 'i'){
@@ -39,28 +39,32 @@ int main(){
             valymas(Temp);
         }
     }
-    nuskriaustukai.reserve(n);
-    galvociai.reserve(n);
+    nuskriaustukai.reserve(n+1);
+    galvociai.reserve(n+1);
     cout << "Pasirinkite galutinio balo skaiciavimo buda(v-vidurkis/m - mediana): " << endl;
     cin >> pasirinkimas;
     if(pasirinkimas == 'v'){
         for(int i = 0;i < n;i++){
             Vec1[i].galutinis = Gal_Balas_vid(Vec1[i]);
         }
-        cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
-        cout << string(50, '-') << endl;
+
     }
     else if(pasirinkimas == 'm'){
         for(int i = 0;i < n;i++){
             Vec1[i].galutinis = Gal_Balas_med(Vec1[i]);
         }
-        cout << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
-        cout << string(50, '-') << endl;
     }
     sort(Vec1.begin(), Vec1.end(), comper);
+
     for(int i = 0;i < n;i++){
-        isvedimas(Vec1.at(i));
+        priskirti_grupej(Vec1[i],nuskriaustukai,galvociai);
     }
+    Vec1.clear();
+    Vec1.shrink_to_fit();
+
+
+    isvedimas(galvociai,nuskriaustukai, pasirinkimas);
+
     system("pause");
     return 0;
 }

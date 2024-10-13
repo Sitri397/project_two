@@ -90,15 +90,44 @@ double Gal_Balas_med(Student &Lok) {
 }
 
 
-void isvedimas(Student &Lok) {
+void isvedimas(vector<Student> &galvociai,vector<Student> &nuskriaustikai, char &pasirinkimas) {
+    Student Lok;
+    ofstream wr1("nuskriaustikai.txt");
+    ofstream wr2("galvociai.txt");
+    if(pasirinkimas == 'v'){
+        wr1 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
+        wr1 << string(50, '-') << endl;
+        wr2 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
+        wr2 << string(50, '-') << endl;
+    }
+    else if(pasirinkimas == 'm'){
+        wr1 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
+        wr1 << string(50, '-') << endl;
+        wr2 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
+        wr2 << string(50, '-') << endl;
+    }
     ostringstream ss;
-    ss << setw(15) << fixed << left << Lok.vardas
+    for(int i = 0;i < galvociai.size();i++){
+        Lok = galvociai[i];
+        ss << setw(15) << fixed << left << Lok.vardas
         << setw(15) << fixed << left << Lok.pavarde
         << setw(3) << fixed << right << setprecision(2)
         << Lok.galutinis << endl;
+    }
+    wr2 << ss.str();
+    wr2.close();
+    ss.clear();
+    for(int i = 0;i < nuskriaustikai.size();i++){
+        Lok = nuskriaustikai[i];
+        ss << setw(15) << fixed << left << Lok.vardas
+        << setw(15) << fixed << left << Lok.pavarde
+        << setw(3) << fixed << right << setprecision(2)
+        << Lok.galutinis << endl;
+    }
+    wr1 << ss.str();
+    wr1.close();
 
 
-    cout << ss.str();
 }
 
 
@@ -204,4 +233,13 @@ void generuotiFaila(const string& failoPavadinimas, int studentuSk) {
     }
 
     outFile.close();
+}
+
+void priskirti_grupej(Student& temp,vector<Student> &nuskriaustukai,vector <Student> &galvociai){
+    if(temp.galutinis < 5){
+        nuskriaustukai.push_back(temp);
+    }
+    else{
+        galvociai.push_back(temp);
+    }
 }
