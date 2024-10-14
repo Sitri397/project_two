@@ -47,12 +47,15 @@ int main(){
 
             cout << "Failai sugeneruoti sekmingai!" << endl;
         }
-        cout << system("dir *.txt") << endl;
         cout << "Iveskite failo pavadinima: " << endl;
         cin >> failo_pavadinimas;
         n = capacity_nustatymas(failo_pavadinimas);
         Vec1.reserve(n+1);
+        auto start = std::chrono::high_resolution_clock::now();
         nuskaitymasIsFailo(Vec1, failo_pavadinimas);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        cout << "Failas is " << n <<" irasu nuskaitymo laikas: "  << diff.count() << endl;
     }
     else if(pasirinkimas == 'i'){
         cout << "Kiek studentu?: " << endl;
@@ -79,13 +82,39 @@ int main(){
             Vec1[i].galutinis = Gal_Balas_med(Vec1[i]);
         }
     }
-    sort(Vec1.begin(), Vec1.end(), comper);
+    cout << "Pagal ka rusiojama?(1-varda/2-pavarde/3-pazymi): " << endl;
+    cin >> pasirinkimas;
+    if(pasirinkimas == '1'){
+        auto start = std::chrono::high_resolution_clock::now();
+        sort(Vec1.begin(), Vec1.end(), comper_by_name);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        cout << n <<" irasu rusiavimas su sort funkcija laikas: " << diff.count() << endl;
+    }
+    else if (pasirinkimas == '2'){
+        auto start = std::chrono::high_resolution_clock::now();
+        sort(Vec1.begin(), Vec1.end(), comper_by_last_name);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        cout << n <<" irasu rusiavimas su sort funkcija laikas: " << diff.count() << endl;
+    }
+    else{
+        auto start = std::chrono::high_resolution_clock::now();
+        sort(Vec1.begin(), Vec1.end(), comper_by_mark);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        cout << n <<" irasu rusiavimas su sort funkcija laikas: " << diff.count() << endl;
+    }
 
+    auto start = std::chrono::high_resolution_clock::now();
     for(int i = 0;i < n;i++){
         priskirti_grupej(Vec1[i],nuskriaustukai,galvociai);
     }
     Vec1.clear();
     Vec1.shrink_to_fit();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end-start;
+    cout << n <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
 
 
     isvedimas(galvociai,nuskriaustukai, pasirinkimas);

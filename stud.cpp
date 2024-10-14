@@ -107,6 +107,7 @@ void isvedimas(vector<Student> &galvociai,vector<Student> &nuskriaustikai, char 
         wr2 << string(50, '-') << endl;
     }
     ostringstream ss;
+    auto start = std::chrono::high_resolution_clock::now();
     for(int i = 0;i < galvociai.size();i++){
         Lok = galvociai[i];
         ss << setw(15) << fixed << left << Lok.vardas
@@ -116,8 +117,12 @@ void isvedimas(vector<Student> &galvociai,vector<Student> &nuskriaustikai, char 
     }
     wr2 << ss.str();
     wr2.close();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end-start;
+    cout <<"Galvociu irasymo laikas: " << diff.count() << endl;
     ss.str("");
     ss.clear();
+    start = std::chrono::high_resolution_clock::now();
     for(int i = 0;i < nuskriaustikai.size();i++){
         Lok = nuskriaustikai[i];
         ss << setw(15) << fixed << left << Lok.vardas
@@ -127,6 +132,9 @@ void isvedimas(vector<Student> &galvociai,vector<Student> &nuskriaustikai, char 
     }
     wr1 << ss.str();
     wr1.close();
+    end = std::chrono::high_resolution_clock::now();
+    diff = end-start;
+    cout <<"Nuskriaustiku irasymo laikas: " << diff.count() << endl;
 
 
 }
@@ -174,13 +182,26 @@ void nuskaitymasIsFailo(vector<Student> &students, string failo_pavadinimas) {
 }
 
 
-int comper(Student& st1, Student& st2) {
+int comper_by_name(Student& st1, Student& st2) {
     if (st1.vardas != st2.vardas) {
         return st1.vardas < st2.vardas;
     } else {
         return st1.pavarde < st2.pavarde;
     }
 }
+
+int comper_by_last_name(Student& st1, Student& st2) {
+    if (st1.pavarde != st2.pavarde){
+        return st1.pavarde < st2.pavarde;
+    }
+}
+
+int comper_by_mark(Student& st1, Student& st2) {
+    if (st1.galutinis != st2.galutinis){
+        return st1.galutinis < st2.galutinis;
+    }
+}
+
 
 int capacity_nustatymas(string failo_pavadinimas){
     int cap = 0;
