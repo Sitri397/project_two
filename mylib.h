@@ -10,6 +10,7 @@
 #include <random>
 #include <stdexcept>
 #include <sstream>
+#include <chrono>
 
 using std::string;
 using std::vector;

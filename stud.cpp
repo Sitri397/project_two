@@ -116,6 +116,7 @@ void isvedimas(vector<Student> &galvociai,vector<Student> &nuskriaustikai, char 
     }
     wr2 << ss.str();
     wr2.close();
+    ss.str("");
     ss.clear();
     for(int i = 0;i < nuskriaustikai.size();i++){
         Lok = nuskriaustikai[i];

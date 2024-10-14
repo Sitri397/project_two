@@ -15,11 +15,36 @@ int main(){
         cout << "Ar sugeneruoti failus?(t/n): " << endl;
         cin >> pasirinkimas;
         if(pasirinkimas == 't'){
+            auto start = std::chrono::high_resolution_clock::now();
             generuotiFaila("stud1000.txt",1000);
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff = end-start;
+            cout << "Failas stud1000.txt sugeneruotas uz " << diff.count() << " sekundziu!" << endl;
+
+            start = std::chrono::high_resolution_clock::now();
             generuotiFaila("stud10000.txt",10000);
+            end = std::chrono::high_resolution_clock::now();
+            diff = end-start;
+            cout << "Failas stud10000.txt sugeneruotas uz " << diff.count() << " sekundziu!" << endl;
+
+            start = std::chrono::high_resolution_clock::now();
             generuotiFaila("stud100000.txt",100000);
+            end = std::chrono::high_resolution_clock::now();
+            diff = end-start;
+            cout << "Failas stud100000.txt sugeneruotas uz " << diff.count() << " sekundziu!" << endl;
+
+            start = std::chrono::high_resolution_clock::now();
             generuotiFaila("stud1000000.txt",1000000);
+            end = std::chrono::high_resolution_clock::now();
+            diff = end-start;
+            cout << "Failas stud1000000.txt sugeneruotas uz " << diff.count() << " sekundziu!" << endl;
+
+            start = std::chrono::high_resolution_clock::now();
             generuotiFaila("stud10000000.txt",10000000);
+            end = std::chrono::high_resolution_clock::now();
+            diff = end-start;
+            cout << "Failas stud10000000.txt sugeneruotas uz " << diff.count() << " sekundziu!" << endl;
+
             cout << "Failai sugeneruoti sekmingai!" << endl;
         }
         cout << system("dir *.txt") << endl;
