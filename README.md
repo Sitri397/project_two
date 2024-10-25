@@ -3,6 +3,11 @@ Programa skirta apskaičiuoti galutinį mokinių balą. Programa gali generuoti 
 ![image](https://github.com/user-attachments/assets/7c2b5979-483c-499d-adc3-0599598e6608)
 
 Laiko matavimo tyrimo rezultatai:
+Kompiuterio charakteristikos:
+CPU: Intel Core i5 12500H
+GPU: NVIDIA GeForce RTX 4050 Laptop
+RAM: 16 GB DDR 5 (Speed 4800 MT/s)
+SSD
 
 | std::vector  | std::list |
 | ------------- | ------------- |
