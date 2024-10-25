@@ -1,3 +1,4 @@
+//stud.cpp
 #include "Student.h"
 
 
@@ -90,96 +91,7 @@ double Gal_Balas_med(Student &Lok) {
 }
 
 
-void isvedimas(vector<Student> &galvociai,vector<Student> &nuskriaustikai, char &pasirinkimas) {
-    Student Lok;
-    ofstream wr1("nuskriaustikai.txt");
-    ofstream wr2("galvociai.txt");
-    if(pasirinkimas == 'v'){
-        wr1 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
-        wr1 << string(50, '-') << endl;
-        wr2 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Vid.)" << endl;
-        wr2 << string(50, '-') << endl;
-    }
-    else if(pasirinkimas == 'm'){
-        wr1 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
-        wr1 << string(50, '-') << endl;
-        wr2 << setw(15) << fixed << left << "Vardas" << setw(15) << fixed << left << "Pavarde" << setw(3) << fixed << right << "Galutinis (Med.)" << endl;
-        wr2 << string(50, '-') << endl;
-    }
-    ostringstream ss;
-    auto start = std::chrono::high_resolution_clock::now();
-    for(int i = 0;i < galvociai.size();i++){
-        Lok = galvociai[i];
-        ss << setw(15) << fixed << left << Lok.vardas
-        << setw(15) << fixed << left << Lok.pavarde
-        << setw(3) << fixed << right << setprecision(2)
-        << Lok.galutinis << endl;
-    }
-    wr2 << ss.str();
-    wr2.close();
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> diff = end-start;
-    cout <<"Galvociu irasymo laikas: " << diff.count() << endl;
-    ss.str("");
-    ss.clear();
-    start = std::chrono::high_resolution_clock::now();
-    for(int i = 0;i < nuskriaustikai.size();i++){
-        Lok = nuskriaustikai[i];
-        ss << setw(15) << fixed << left << Lok.vardas
-        << setw(15) << fixed << left << Lok.pavarde
-        << setw(3) << fixed << right << setprecision(2)
-        << Lok.galutinis << endl;
-    }
-    wr1 << ss.str();
-    wr1.close();
-    end = std::chrono::high_resolution_clock::now();
-    diff = end-start;
-    cout <<"Nuskriaustiku irasymo laikas: " << diff.count() << endl;
 
-
-}
-
-
-void nuskaitymasIsFailo(vector<Student> &students, string failo_pavadinimas) {
-    ifstream inFile(failo_pavadinimas);
-    if (!inFile) {
-        throw runtime_error("Neisejo atidaryti failo: " + failo_pavadinimas);
-    }
-
-    stringstream FileStream;
-    FileStream << inFile.rdbuf();
-    inFile.close();
-    string line;
-    getline(FileStream,line);
-
-    while (getline(FileStream, line)) {
-        istringstream iss(line);
-        Student temp;
-        string vardas, pavarde;
-        iss >> vardas >> pavarde;
-        temp.vardas = vardas;
-        temp.pavarde = pavarde;
-
-        int rezultatas;
-        vector<int> nd;
-        while (iss >> rezultatas) {
-            nd.push_back(rezultatas);
-        }
-
-
-        if (!nd.empty()) {
-            temp.egzaminas = nd.back();
-            nd.pop_back();
-            temp.nd = nd;
-        } else {
-            cout << "Klaida: studentas neturi pazymiu: " << temp.vardas << " " << temp.pavarde << endl;
-            continue;
-        }
-
-        students.push_back(temp);
-    }
-
-}
 
 
 int comper_by_name(Student& st1, Student& st2) {
@@ -257,11 +169,16 @@ void generuotiFaila(const string& failoPavadinimas, int studentuSk) {
     outFile.close();
 }
 
-void priskirti_grupej(Student& temp,vector<Student> &nuskriaustukai,vector <Student> &galvociai){
-    if(temp.galutinis < 5){
-        nuskriaustukai.push_back(temp);
-    }
-    else{
-        galvociai.push_back(temp);
-    }
+Student get(vector<Student> &vec,int i){
+    return vec[i];
 }
+
+Student get(list<Student> _list, int _i){
+    list<Student>::iterator it = _list.begin();
+    for(int i=0; i<_i; i++){
+        ++it;
+    }
+    return *it;
+}
+
+
