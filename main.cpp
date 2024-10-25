@@ -71,6 +71,7 @@ int main(){
             Vec1.push_back(Temp);
             valymas(Temp);
         }
+        cout << "Saugojimo adresas: " << &Vec1 << endl;
     }
     nuskriaustukai.reserve(n+1);
     galvociai.reserve(n+1);
@@ -187,6 +188,7 @@ int main(){
             Vec1.push_back(Temp);
             valymas(Temp);
         }
+        cout << "Saugojimo adresas: " << &Vec1 << endl;
     }
     cout << "Pasirinkite galutinio balo skaiciavimo buda(v-vidurkis/m - mediana): " << endl;
     cin >> pasirinkimas2;
