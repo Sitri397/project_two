@@ -45,12 +45,11 @@ void isvedimas(T &galvociai,T &nuskriaustikai, char &pasirinkimas) {
     }
     ostringstream ss;
     auto start = std::chrono::high_resolution_clock::now();
-    for(int i = 0;i < galvociai.size();i++){
-        Lok = get(galvociai,i);
-        ss << setw(15) << fixed << left << Lok.vardas
-        << setw(15) << fixed << left << Lok.pavarde
+    for(auto &st: galvociai){
+        ss << setw(15) << fixed << left << st.vardas
+        << setw(15) << fixed << left << st.pavarde
         << setw(3) << fixed << right << setprecision(2)
-        << Lok.galutinis << endl;
+        << st.galutinis << endl;
     }
     wr2 << ss.str();
     wr2.close();
@@ -60,12 +59,11 @@ void isvedimas(T &galvociai,T &nuskriaustikai, char &pasirinkimas) {
     ss.str("");
     ss.clear();
     start = std::chrono::high_resolution_clock::now();
-    for(int i = 0;i < nuskriaustikai.size();i++){
-        Lok = get(nuskriaustikai,i);
-        ss << setw(15) << fixed << left << Lok.vardas
-        << setw(15) << fixed << left << Lok.pavarde
+    for(auto &st:nuskriaustikai){
+        ss << setw(15) << fixed << left << st.vardas
+        << setw(15) << fixed << left << st.pavarde
         << setw(3) << fixed << right << setprecision(2)
-        << Lok.galutinis << endl;
+        << st.galutinis << endl;
     }
     wr1 << ss.str();
     wr1.close();
@@ -120,12 +118,14 @@ void nuskaitymasIsFailo(T &students, string failo_pavadinimas) {
 
 
 template <typename T>
-void priskirti_grupej(Student& temp,T &nuskriaustukai,T &galvociai){
-    if(temp.galutinis < 5){
-        nuskriaustukai.push_back(temp);
-    }
-    else{
-        galvociai.push_back(temp);
+void priskirti_grupej(T &vec,T &nuskriaustukai,T &galvociai){
+    for(auto &st: vec){
+        if(st.galutinis < 5){
+            nuskriaustukai.push_back(st);
+        }
+        else{
+            galvociai.push_back(st);
+        }
     }
 }
 

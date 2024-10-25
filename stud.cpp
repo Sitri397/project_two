@@ -169,16 +169,6 @@ void generuotiFaila(const string& failoPavadinimas, int studentuSk) {
     outFile.close();
 }
 
-Student get(vector<Student> &vec,int i){
-    return vec[i];
-}
 
-Student get(list<Student> _list, int _i){
-    list<Student>::iterator it = _list.begin();
-    for(int i=0; i<_i; i++){
-        ++it;
-    }
-    return *it;
-}
 
 

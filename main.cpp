@@ -112,9 +112,7 @@ int main(){
     }
 
     auto start = std::chrono::high_resolution_clock::now();
-    for(int i = 0;i < n;i++){
-        priskirti_grupej(Vec1[i],nuskriaustukai,galvociai);
-    }
+    priskirti_grupej(Vec1,nuskriaustukai,galvociai);
     Vec1.clear();
     Vec1.shrink_to_fit();
     auto end = std::chrono::high_resolution_clock::now();
@@ -228,10 +226,7 @@ int main(){
     }
 
     auto start = std::chrono::high_resolution_clock::now();
-    for(int i = 0;i < n;i++){
-        Temp = get(Vec1,i);
-        priskirti_grupej(Temp,nuskriaustukai,galvociai);
-    }
+    priskirti_grupej(Vec1,nuskriaustukai,galvociai);
     Vec1.clear();
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end-start;
