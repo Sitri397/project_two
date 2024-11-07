@@ -5,10 +5,13 @@
 int main(){
     char pasirinkimas;
     char pasirinkimas2;
+    char strategija;
     Student Temp;
     int n;
     cout << "Naudosime vector arba list?(1 - vector/2 - list)" << endl;
     cin >> pasirinkimas;
+    cout << "Kokia strategija?(1/2/3): " << endl;
+    cin >> strategija;
     if(pasirinkimas == '1'){
     vector<Student> Vec1;
     vector<Student> nuskriaustukai;
@@ -113,9 +116,16 @@ int main(){
     }
 
     auto start = std::chrono::high_resolution_clock::now();
-    priskirti_grupej(Vec1,nuskriaustukai,galvociai);
-    Vec1.clear();
-    Vec1.shrink_to_fit();
+    if(strategija == '1'){
+        priskirti_grupej_1(Vec1,nuskriaustukai,galvociai);
+        Vec1.clear();
+        Vec1.shrink_to_fit();
+    }
+    if(strategija == '2'){
+        priskirti_grupej_2(Vec1,nuskriaustukai);
+        galvociai = Vec1;
+
+    }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end-start;
     cout << n <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
@@ -228,8 +238,15 @@ int main(){
     }
 
     auto start = std::chrono::high_resolution_clock::now();
-    priskirti_grupej(Vec1,nuskriaustukai,galvociai);
-    Vec1.clear();
+    if(strategija == '1'){
+        priskirti_grupej_1(Vec1,nuskriaustukai,galvociai);
+        Vec1.clear();
+    }
+    if(strategija == '2'){
+        priskirti_grupej_2(Vec1,nuskriaustukai);
+        galvociai = Vec1;
+    }
+
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end-start;
     cout << n <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
