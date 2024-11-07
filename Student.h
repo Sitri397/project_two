@@ -118,13 +118,25 @@ void nuskaitymasIsFailo(T &students, string failo_pavadinimas) {
 
 
 template <typename T>
-void priskirti_grupej(T &vec,T &nuskriaustukai,T &galvociai){
+void priskirti_grupej_1(T &vec,T &nuskriaustukai,T &galvociai){
     for(auto &st: vec){
         if(st.galutinis < 5){
             nuskriaustukai.push_back(st);
         }
         else{
             galvociai.push_back(st);
+        }
+    }
+}
+
+template <typename Container>
+void priskirti_grupej_2(Container& students, Container &nuskriaustukai) {
+    for (auto it = students.begin(); it != students.end();) {
+        if (it->galutinis < 5) {
+            nuskriaustukai.push_back(*it);
+            it = students.erase(it);
+        } else {
+            ++it;
         }
     }
 }
