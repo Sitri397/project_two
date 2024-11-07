@@ -141,5 +141,17 @@ void priskirti_grupej_2(Container& students, Container &nuskriaustukai) {
     }
 }
 
+template <typename Container>
+void priskirti_grupej_3(Container& students, Container& vargsiukai) {
+    auto partition_point = std::stable_partition(students.begin(), students.end(), [](const Student& st) {
+        return st.galutinis >= 5;
+    });
+
+
+    vargsiukai.insert(vargsiukai.end(), partition_point, students.end());
+
+    students.erase(partition_point, students.end());
+}
+
 
 #endif // STUDENT_H_INCLUDED
