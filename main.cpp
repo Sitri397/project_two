@@ -126,6 +126,10 @@ int main(){
         galvociai = Vec1;
 
     }
+    if(strategija == '3'){
+        priskirti_grupej_3(Vec1,nuskriaustukai);
+        galvociai = Vec1;
+    }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end-start;
     cout << n <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
@@ -244,6 +248,11 @@ int main(){
     }
     if(strategija == '2'){
         priskirti_grupej_2(Vec1,nuskriaustukai);
+        galvociai = Vec1;
+    }
+
+    if(strategija == '3'){
+        priskirti_grupej_3(Vec1,nuskriaustukai);
         galvociai = Vec1;
     }
 
