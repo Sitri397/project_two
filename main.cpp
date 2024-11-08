@@ -16,6 +16,7 @@ int main(){
     vector<Student> Vec1;
     vector<Student> nuskriaustukai;
     vector<Student> galvociai;
+
     cout << "Norite nuskaityti is failo ar ivesti rankiniu budu?(n-nuskaityti/i-ivesti): " << endl;
     cin >> pasirinkimas;
     if(pasirinkimas == 'n'){
@@ -116,20 +117,18 @@ int main(){
     }
 
     auto start = std::chrono::high_resolution_clock::now();
-    if(strategija == '1'){
-        priskirti_grupej_1(Vec1,nuskriaustukai,galvociai);
+    if (strategija == '1') {
+        priskirti_grupej_1(Vec1, nuskriaustukai, galvociai);
         Vec1.clear();
         Vec1.shrink_to_fit();
+    } else if (strategija == '2') {
+        priskirti_grupej_2(Vec1, nuskriaustukai);
+        swap(galvociai,Vec1);
+    } else if (strategija == '3') {
+        priskirti_grupej_3(Vec1, nuskriaustukai);
+        swap(galvociai,Vec1);
     }
-    if(strategija == '2'){
-        priskirti_grupej_2(Vec1,nuskriaustukai);
-        galvociai = Vec1;
 
-    }
-    if(strategija == '3'){
-        priskirti_grupej_3(Vec1,nuskriaustukai);
-        galvociai = Vec1;
-    }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end-start;
     cout << n <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
@@ -248,12 +247,12 @@ int main(){
     }
     if(strategija == '2'){
         priskirti_grupej_2(Vec1,nuskriaustukai);
-        galvociai = Vec1;
+        swap(galvociai,Vec1);
     }
 
     if(strategija == '3'){
         priskirti_grupej_3(Vec1,nuskriaustukai);
-        galvociai = Vec1;
+        swap(galvociai,Vec1);
     }
 
     auto end = std::chrono::high_resolution_clock::now();
