@@ -22,6 +22,11 @@ SSD
 |![image](https://github.com/user-attachments/assets/2741f725-9522-4e8e-9451-4f84cb665ac0)| ![image](https://github.com/user-attachments/assets/6b75bd4c-0ff6-40d1-8f78-2778ffec1d2a)|
 |![image](https://github.com/user-attachments/assets/487ce2a0-58f2-4a27-b349-420bba445f2a)|![image](https://github.com/user-attachments/assets/14b95b45-8f8f-4bc0-9704-adeface9f415)|
 
+![image](https://github.com/user-attachments/assets/5d28887b-ed28-4aac-ad2f-880d71fce377)
+
+
+3 strategijai buvo panauduota patobulinta 2 strategija su std::stable_partition
+
 
 | |1 strategija | 2 strategija | 3 strategija |
 |-------------|-------------|-------------|-------------|
