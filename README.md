@@ -38,8 +38,8 @@ Class ir Struct palyginimas
 
 | | struct | class |
 |-------------|-------------|-------------|
-|10^6 studentu| |![image](https://github.com/user-attachments/assets/43403d52-bf5a-444d-b984-6589e5cfa287)|
-|10^7 studentu| |![image](https://github.com/user-attachments/assets/542db4f3-9a71-4554-ad88-e93c3bdc5a90)|
+|10^6 studentu|![image](https://github.com/user-attachments/assets/5c7706ac-6a96-4347-85e9-39babc893127)|![image](https://github.com/user-attachments/assets/43403d52-bf5a-444d-b984-6589e5cfa287)|
+|10^7 studentu|![image](https://github.com/user-attachments/assets/58989701-b5a7-468a-8260-642c2d91144e)|![image](https://github.com/user-attachments/assets/542db4f3-9a71-4554-ad88-e93c3bdc5a90)|
 
 
 
