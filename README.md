@@ -34,6 +34,14 @@ SSD
 |std::list|![image](https://github.com/user-attachments/assets/1c494bc2-1a4b-42d5-935f-b84d00141160)|![image](https://github.com/user-attachments/assets/2a566e41-5264-4485-b605-a5ca794659f8)|![image](https://github.com/user-attachments/assets/1b04d152-b936-44f0-a813-387894da3cc6)|
 
 
+Class ir Struct palyginimas
+
+| | Struct | Class |
+|-------------|-------------|-------------|
+|10^6 studentu| | |
+|10^7 studentu| | |
+
+
 
 
 
