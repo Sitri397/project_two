@@ -40,6 +40,12 @@ public:
 
     double calcGalBalasVid() const;
     double calcGalBalasMed() const;
+    ~Student() {
+    vardas_.clear();
+    pavarde_.clear();
+    nd_.clear();
+}
+
 
 
 
@@ -184,4 +190,5 @@ bool compareByMark(const Student& st1, const Student& st2) ;
 
 
 void ived(Student &st);
+int capacity_nustatymas(string failo_pavadinimas);
 #endif // STUDENT_H_INCLUDED
