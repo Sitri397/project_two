@@ -1,29 +1,52 @@
-//Student.h
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
 
 #include "mylib.h"
 
-struct Student {
-    string vardas;
-    string pavarde;
-    vector<int> nd;
-    int egzaminas;
-    double galutinis;
+class Student {
+private:
+    string vardas_;
+    string pavarde_;
+    vector<int> nd_;
+    int egzaminas_ = 0;
+    double galutinis_ = 0.0;
+
+public:
+    Student() = default;
+    Student(const string& vardas, const string& pavarde) : vardas_(vardas), pavarde_(pavarde) {}
+
+    string get_vardas() const { return vardas_; }
+    string get_pavarde() const { return pavarde_; }
+    vector<int> get_nd() const { return nd_; }
+    int get_egzaminas() const { return egzaminas_; }
+    double get_galutinis() const { return galutinis_; }
+
+
+    void setVardas(const string& vardas) { vardas_ = vardas; }
+    void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
+    void addNd(int grade) { nd_.push_back(grade); }
+    void setEgzaminas(int grade) { egzaminas_ = grade; }
+    void setGalutinis(double balas) { galutinis_ = balas; }
+    void setNd(vector<int> nd) {nd_ = nd;}
+
+
+    void clear() {
+        vardas_.clear();
+        pavarde_.clear();
+        nd_.clear();
+        egzaminas_ = 0;
+        galutinis_ = 0.0;
+    }
+
+    double calcGalBalasVid() const;
+    double calcGalBalasMed() const;
+
+
+
+
+
 };
 
-void ived(Student &st);
-void valymas(Student &Lok);
-double Gal_Balas_vid(Student &Lok);
-double Gal_Balas_med(Student &Lok);
-
-Student get(list<Student> _list, int _i);
-Student get(vector<Student> &vec,int i);
-
-int comper_by_name(Student& st1, Student& st2);
-int comper_by_last_name(Student& st1, Student& st2);
-int comper_by_mark(Student& st1, Student& st2);
-int capacity_nustatymas(string failo_pavadinimas);
 void generuotiFaila(const string& failoPavadinimas, int studentuSk);
 
 template <typename T>
@@ -46,10 +69,10 @@ void isvedimas(T &galvociai,T &nuskriaustikai, char &pasirinkimas) {
     ostringstream ss;
     auto start = std::chrono::high_resolution_clock::now();
     for(auto &st: galvociai){
-        ss << setw(15) << fixed << left << st.vardas
-        << setw(15) << fixed << left << st.pavarde
+        ss << setw(15) << fixed << left << st.get_vardas()
+        << setw(15) << fixed << left << st.get_pavarde()
         << setw(3) << fixed << right << setprecision(2)
-        << st.galutinis << endl;
+        << st.get_galutinis() << endl;
     }
     wr2 << ss.str();
     wr2.close();
@@ -60,10 +83,10 @@ void isvedimas(T &galvociai,T &nuskriaustikai, char &pasirinkimas) {
     ss.clear();
     start = std::chrono::high_resolution_clock::now();
     for(auto &st:nuskriaustikai){
-        ss << setw(15) << fixed << left << st.vardas
-        << setw(15) << fixed << left << st.pavarde
+        ss << setw(15) << fixed << left << st.get_vardas()
+        << setw(15) << fixed << left << st.get_pavarde()
         << setw(3) << fixed << right << setprecision(2)
-        << st.galutinis << endl;
+        << st.get_galutinis() << endl;
     }
     wr1 << ss.str();
     wr1.close();
@@ -92,8 +115,8 @@ void nuskaitymasIsFailo(T &students, string failo_pavadinimas) {
         Student temp;
         string vardas, pavarde;
         iss >> vardas >> pavarde;
-        temp.vardas = vardas;
-        temp.pavarde = pavarde;
+        temp.setVardas(vardas);
+        temp.setPavarde(pavarde);
 
         int rezultatas;
         vector<int> nd;
@@ -103,11 +126,11 @@ void nuskaitymasIsFailo(T &students, string failo_pavadinimas) {
 
 
         if (!nd.empty()) {
-            temp.egzaminas = nd.back();
+            temp.setEgzaminas(nd.back());
             nd.pop_back();
-            temp.nd = nd;
+            temp.setNd(nd);
         } else {
-            cout << "Klaida: studentas neturi pazymiu: " << temp.vardas << " " << temp.pavarde << endl;
+            cout << "Klaida: studentas neturi pazymiu: " << temp.get_vardas() << " " << temp.get_pavarde() << endl;
             continue;
         }
 
@@ -116,11 +139,10 @@ void nuskaitymasIsFailo(T &students, string failo_pavadinimas) {
 
 }
 
-
 template <typename T>
 void priskirti_grupej_1(T &vec,T &nuskriaustukai,T &galvociai){
     for(auto &st: vec){
-        if(st.galutinis < 5){
+        if(st.get_galutinis() < 5){
             nuskriaustukai.push_back(st);
         }
         else{
@@ -132,7 +154,7 @@ void priskirti_grupej_1(T &vec,T &nuskriaustukai,T &galvociai){
 template <typename Container>
 void priskirti_grupej_2(Container& students, Container &nuskriaustukai) {
    for (auto it = students.begin(); it != students.end();) {
-       if (it->galutinis < 5) {
+       if (it->get_galutinis() < 5) {
             nuskriaustukai.push_back(*it);
             it = students.erase(it);
         } else {
@@ -144,7 +166,7 @@ void priskirti_grupej_2(Container& students, Container &nuskriaustukai) {
 template <typename Container>
 void priskirti_grupej_3(Container& students, Container& vargsiukai) {
     auto partition_point = std::stable_partition(students.begin(), students.end(), [](const Student& st) {
-        return st.galutinis >= 5;
+        return st.get_galutinis() >= 5;
     });
 
 
@@ -153,5 +175,13 @@ void priskirti_grupej_3(Container& students, Container& vargsiukai) {
     students.erase(partition_point, students.end());
 }
 
+bool compareByName(const Student& st1, const Student& st2);
 
+
+bool compareByLastName(const Student& st1, const Student& st2) ;
+
+bool compareByMark(const Student& st1, const Student& st2) ;
+
+
+void ived(Student &st);
 #endif // STUDENT_H_INCLUDED
