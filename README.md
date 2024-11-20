@@ -41,12 +41,19 @@ Class ir Struct palyginimas
 |10^6 studentu|![image](https://github.com/user-attachments/assets/5c7706ac-6a96-4347-85e9-39babc893127)|![image](https://github.com/user-attachments/assets/43403d52-bf5a-444d-b984-6589e5cfa287)|
 |10^7 studentu|![image](https://github.com/user-attachments/assets/58989701-b5a7-468a-8260-642c2d91144e)|![image](https://github.com/user-attachments/assets/542db4f3-9a71-4554-ad88-e93c3bdc5a90)|
 
-Optimizavimo paltginimas su flagais o1,o2,o3
+Greicio palyginimas su flagais o1,o2,o3
 
 | | o1 | o2 | o3 |
 |-------------|-------------|-------------|-------------|
 |struct|![image](https://github.com/user-attachments/assets/8fd389e8-8a7c-4763-8b06-729945d2ac62)| ![image](https://github.com/user-attachments/assets/cb9c9e77-bead-46f4-9d56-59e08d5b0e3f)| ![image](https://github.com/user-attachments/assets/d05262c6-7c2a-4c22-89ec-d747d5aefe6e)|
 |class| | | |
+
+
+Failo dydzio palyginimas su flagais o1,o2,3
+| | o1 | o2 | o3 |
+|-------------|-------------|-------------|-------------|
+|struct|98 KB |98 KB |98 KB |
+|class|96 KB | 96 KB|96 KB|
 
 
 
