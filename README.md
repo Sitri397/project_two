@@ -36,10 +36,10 @@ SSD
 
 Class ir Struct palyginimas
 
-| | Struct | Class |
+| | struct | class |
 |-------------|-------------|-------------|
-|10^6 studentu| | |
-|10^7 studentu| | |
+|10^6 studentu| |![image](https://github.com/user-attachments/assets/b815fae4-1474-43f7-9820-9003abbec443)|
+|10^7 studentu| |![image](https://github.com/user-attachments/assets/bbf40006-7c2f-4543-bcd0-477c3b36c348)|
 
 
 
