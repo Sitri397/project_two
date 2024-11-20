@@ -45,7 +45,7 @@ Optimizavimo paltginimas su flagais o1,o2,o3
 
 | | o1 | o2 | o3 |
 |-------------|-------------|-------------|-------------|
-|struct| | | |
+|struct|![image](https://github.com/user-attachments/assets/8fd389e8-8a7c-4763-8b06-729945d2ac62)| ![image](https://github.com/user-attachments/assets/cb9c9e77-bead-46f4-9d56-59e08d5b0e3f)| ![image](https://github.com/user-attachments/assets/d05262c6-7c2a-4c22-89ec-d747d5aefe6e)|
 |class| | | |
 
 
