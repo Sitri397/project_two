@@ -13,7 +13,7 @@ int main() {
 
     if (pasirinkimas == '1') {
         vector<Student> Vec1, nuskriaustukai, galvociai;
-
+        int size_;
         cout << "Norite nuskaityti is failo ar ivesti rankiniu budu? (n-nuskaityti / i-ivesti): ";
         cin >> pasirinkimas;
 
@@ -33,7 +33,13 @@ int main() {
 
             cout << "Iveskite failo pavadinima: ";
             cin >> failo_pavadinimas;
+            size_ = capacity_nustatymas(failo_pavadinimas);
+            Vec1.reserve(size_ + 1);
+            auto start = std::chrono::high_resolution_clock::now();
             nuskaitymasIsFailo(Vec1, failo_pavadinimas);
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff = end-start;
+            cout << "Failas is " << size_ <<" irasu nuskaitymo laikas: "  << diff.count() << endl;
         } else if (pasirinkimas == 'i') {
             cout << "Kiek studentu?: ";
             cin >> n;
@@ -45,6 +51,8 @@ int main() {
                 temp.clear();
             }
         }
+        nuskriaustukai.reserve(size_ + 1);
+        galvociai.reserve(size_ + 1);
 
         cout << "Pasirinkite galutinio balo skaiciavimo buda (v-vidurkis / m-mediana): ";
         cin >> pasirinkimas2;
@@ -61,7 +69,7 @@ int main() {
 
         cout << "Pagal ka rusiojama? (1-varda / 2-pavarde / 3-pazymi): ";
         cin >> pasirinkimas;
-
+        auto start = std::chrono::high_resolution_clock::now();
         if (pasirinkimas == '1') {
             sort(Vec1.begin(), Vec1.end(), compareByName);
         } else if (pasirinkimas == '2') {
@@ -69,7 +77,11 @@ int main() {
         } else {
             sort(Vec1.begin(), Vec1.end(), compareByMark);
         }
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        cout << size_ <<" irasu rusiavimas su sort funkcija laikas: " << diff.count() << endl;
 
+        start = std::chrono::high_resolution_clock::now();
         if (strategija == '1') {
             priskirti_grupej_1(Vec1, nuskriaustukai, galvociai);
         } else if (strategija == '2') {
@@ -79,11 +91,14 @@ int main() {
             priskirti_grupej_3(Vec1, nuskriaustukai);
             swap(Vec1, galvociai);
         }
+        end = std::chrono::high_resolution_clock::now();
+        diff = end-start;
+        cout << size_ <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
 
         isvedimas(galvociai, nuskriaustukai, pasirinkimas2);
     } else {
         list<Student> List1, nuskriaustukai, galvociai;
-
+        int size_;
         cout << "Norite nuskaityti is failo ar ivesti rankiniu budu? (n-nuskaityti / i-ivesti): ";
         cin >> pasirinkimas;
 
@@ -103,7 +118,12 @@ int main() {
 
             cout << "Iveskite failo pavadinima: ";
             cin >> failo_pavadinimas;
+            size_ = capacity_nustatymas(failo_pavadinimas);
+            auto start = std::chrono::high_resolution_clock::now();
             nuskaitymasIsFailo(List1, failo_pavadinimas);
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff = end-start;
+            cout << "Failas is " << size_ <<" irasu nuskaitymo laikas: "  << diff.count() << endl;
         } else if (pasirinkimas == 'i') {
             cout << "Kiek studentu?: ";
             cin >> n;
@@ -128,7 +148,22 @@ int main() {
                 st.setGalutinis(st.calcGalBalasMed());
             }
         }
+        cout << "Pagal ka rusiojama? (1-varda / 2-pavarde / 3-pazymi): ";
+        cin >> pasirinkimas;
 
+        auto start = std::chrono::high_resolution_clock::now();
+        if (pasirinkimas == '1') {
+            List1.sort(compareByName);
+        } else if (pasirinkimas == '2') {
+            List1.sort(compareByLastName);
+        } else {
+            List1.sort(compareByMark);
+        }
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        cout << size_ <<" irasu rusiavimas su sort funkcija laikas: " << diff.count() << endl;
+
+        start = std::chrono::high_resolution_clock::now();
         if (strategija == '1') {
             priskirti_grupej_1(List1, nuskriaustukai, galvociai);
         } else if (strategija == '2') {
@@ -138,6 +173,9 @@ int main() {
             priskirti_grupej_3(List1, nuskriaustukai);
             swap(List1, galvociai);
         }
+        end = std::chrono::high_resolution_clock::now();
+        diff = end-start;
+        cout << size_ <<" irasu dalijimo i 2 grupes laikas: " << diff.count() << endl;
 
         isvedimas(galvociai, nuskriaustukai, pasirinkimas2);
     }
