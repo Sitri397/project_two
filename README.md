@@ -46,7 +46,7 @@ Greicio palyginimas su flagais o1,o2,o3
 | | o1 | o2 | o3 |
 |-------------|-------------|-------------|-------------|
 |struct|![image](https://github.com/user-attachments/assets/8fd389e8-8a7c-4763-8b06-729945d2ac62)| ![image](https://github.com/user-attachments/assets/cb9c9e77-bead-46f4-9d56-59e08d5b0e3f)| ![image](https://github.com/user-attachments/assets/d05262c6-7c2a-4c22-89ec-d747d5aefe6e)|
-|class| | | |
+|class|![image](https://github.com/user-attachments/assets/7e5bdfbc-d585-46ed-b0fa-459efe112354)|![image](https://github.com/user-attachments/assets/304d7b91-b2f5-4d45-94dc-8d078c5a457c)|![image](https://github.com/user-attachments/assets/4558b42d-a2ca-466f-8908-8a7832b9cf54)|
 
 
 Failo dydzio palyginimas su flagais o1,o2,3
