@@ -53,7 +53,7 @@ Failo dydzio palyginimas su flagais o1,o2,3
 | | o1 | o2 | o3 |
 |-------------|-------------|-------------|-------------|
 |struct|98 KB |98 KB |98 KB |
-|class|96 KB | 96 KB|96 KB|
+|class|![image](https://github.com/user-attachments/assets/82a75129-744e-4670-8bfd-094fc00f8ee1)| ![image](https://github.com/user-attachments/assets/50d91e44-0276-4105-aff2-814c3c751c91)|![image](https://github.com/user-attachments/assets/cc56d64c-a5f3-4601-b011-5a288b54f65a)|
 
 
 
