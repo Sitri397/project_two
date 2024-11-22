@@ -40,6 +40,9 @@ public:
 
     double calcGalBalasVid() const;
     double calcGalBalasMed() const;
+
+    void ived();
+
     ~Student() {
     vardas_.clear();
     pavarde_.clear();
