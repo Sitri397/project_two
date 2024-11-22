@@ -1,13 +1,10 @@
 #include "Student.h"
 
-void ived(Student& st) {
-    string vardas, pavarde;
+void Student::ived() {
     char pasirinkimas;
 
     cout << "Iveskite studento varda ir pavarde: ";
-    cin >> vardas >> pavarde;
-    st.setVardas(vardas);
-    st.setPavarde(pavarde);
+    cin >> vardas_ >> pavarde_;
 
     cout << "Ar sugeneruoti studento rezultatus? (t/n): ";
     cin >> pasirinkimas;
@@ -15,18 +12,18 @@ void ived(Student& st) {
     if (pasirinkimas == 't') {
         srand(time(nullptr));
         for (int i = 0; i < 5; ++i) {
-            st.addNd(rand() % 10 + 1);
+            addNd(rand() % 10 + 1);
         }
-        st.setEgzaminas(rand() % 10 + 1);
+        setEgzaminas(rand() % 10 + 1);
     } else {
         int grade;
         cout << "Iveskite namu darbu rezultatus (-1 uzbaigti): ";
         while (cin >> grade && grade != -1) {
-            st.addNd(grade);
+            addNd(grade);
         }
         cout << "Iveskite egzamino rezultata: ";
         cin >> grade;
-        st.setEgzaminas(grade);
+        setEgzaminas(grade);
     }
 }
 

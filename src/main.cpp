@@ -46,7 +46,7 @@ int main() {
 
             for (int i = 0; i < n; ++i) {
                 cout << "Iveskite studento duomenis: " << endl;
-                ived(temp);
+                temp.ived();
                 Vec1.push_back(temp);
                 temp.clear();
             }
@@ -130,7 +130,7 @@ int main() {
 
             for (int i = 0; i < n; ++i) {
                 cout << "Iveskite studento duomenis: " << endl;
-                ived(temp);
+                temp.ived();
                 List1.push_back(temp);
                 temp.clear();
             }
