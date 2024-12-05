@@ -15,6 +15,26 @@ public:
     Student() = default;
     Student(const string& vardas, const string& pavarde) : vardas_(vardas), pavarde_(pavarde) {}
 
+    Student(const Student& other)
+        : vardas_(other.vardas_), pavarde_(other.pavarde_),
+          nd_(other.nd_), egzaminas_(other.egzaminas_),
+          galutinis_(other.galutinis_) {}
+
+
+    Student& operator=(const Student& other) {
+        if (this != &other) {
+            vardas_ = other.vardas_;
+            pavarde_ = other.pavarde_;
+            nd_ = other.nd_;
+            egzaminas_ = other.egzaminas_;
+            galutinis_ = other.galutinis_;
+        }
+        return *this;
+    }
+
+    friend istream& operator>>(istream& in, Student& student);
+    friend ostream& operator<<(ostream& out, const Student& student);
+
     string get_vardas() const { return vardas_; }
     string get_pavarde() const { return pavarde_; }
     vector<int> get_nd() const { return nd_; }
@@ -78,10 +98,7 @@ void isvedimas(T &galvociai,T &nuskriaustikai, char &pasirinkimas) {
     ostringstream ss;
     auto start = std::chrono::high_resolution_clock::now();
     for(auto &st: galvociai){
-        ss << setw(15) << fixed << left << st.get_vardas()
-        << setw(15) << fixed << left << st.get_pavarde()
-        << setw(3) << fixed << right << setprecision(2)
-        << st.get_galutinis() << endl;
+        ss << st << endl;
     }
     wr2 << ss.str();
     wr2.close();
@@ -92,10 +109,7 @@ void isvedimas(T &galvociai,T &nuskriaustikai, char &pasirinkimas) {
     ss.clear();
     start = std::chrono::high_resolution_clock::now();
     for(auto &st:nuskriaustikai){
-        ss << setw(15) << fixed << left << st.get_vardas()
-        << setw(15) << fixed << left << st.get_pavarde()
-        << setw(3) << fixed << right << setprecision(2)
-        << st.get_galutinis() << endl;
+        ss << st << endl;
     }
     wr1 << ss.str();
     wr1.close();
@@ -192,6 +206,5 @@ bool compareByLastName(const Student& st1, const Student& st2) ;
 bool compareByMark(const Student& st1, const Student& st2) ;
 
 
-void ived(Student &st);
 int capacity_nustatymas(string failo_pavadinimas);
 #endif // STUDENT_H_INCLUDED
