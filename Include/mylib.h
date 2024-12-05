@@ -46,6 +46,8 @@ using std::uniform_int_distribution;
 using std::to_string;
 using std::remove;
 using std::swap;
+using std::ostream;
+using std::istream;
 
 
 
