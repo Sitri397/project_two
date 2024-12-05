@@ -1,5 +1,30 @@
 #include "Student.h"
 
+ostream& operator<<(ostream& out, const Student& student){
+    out << setw(15) << fixed << left << student.get_vardas()
+        << setw(15) << fixed << left << student.get_pavarde()
+        << setw(3) << fixed << right << setprecision(2)
+        << student.get_galutinis();
+        return out;
+}
+
+istream& operator>>(istream& in, Student& student){
+    in >> student.vardas_ >> student.pavarde_;
+
+    int grade;
+    student.nd_.clear();
+    while (in >> grade && grade != -1) {
+        student.nd_.push_back(grade);
+    }
+
+    if (!in.eof()) {
+        in.clear();
+        in >> student.egzaminas_;
+    }
+
+    return in;
+}
+
 void Student::ived() {
     char pasirinkimas;
 
