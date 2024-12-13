@@ -11,11 +11,11 @@ int main() {
         Student A;
         cout << "Iveskite studento varda pavarde, n.d. rezultatus(-1 uzbaigti) ir egzamino rezultata" << endl;
         cin >> A;
-        cout << "Pirmo studento adresas: " << &A << endl;
+        cout << "Pirmo studento adresas: " << A << endl;
         Student B = A;
-        cout << "1 kopijos adresas: " << &B << endl;
+        cout << "1 kopijos adresas: " << B << endl;
         Student C(A);
-        cout << "2 kopijos adresas: " << &C << endl;
+        cout << "2 kopijos adresas: " << C << endl;
     }
 
     cout << "Naudosime vector arba list? (1 - vector / 2 - list): ";
