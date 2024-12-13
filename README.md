@@ -59,6 +59,8 @@ Sukurti perdengti ivedimo ir isvedimo metodai
 
 ![image](https://github.com/user-attachments/assets/3d7e379d-aec8-4343-9a10-9b58863509f0)
 
+Realizuota abstrakti klase Zmogus
+
 
 
 
