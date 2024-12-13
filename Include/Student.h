@@ -3,28 +3,55 @@
 
 #include "mylib.h"
 
-class Student {
-private:
+class Zmogus {
+protected:
     string vardas_;
     string pavarde_;
+public:
+    virtual void ived() = 0;
+
+    Zmogus() = default;
+    Zmogus(const string& vardas, const string& pavarde) : vardas_(vardas), pavarde_(pavarde) {}
+    Zmogus(const Zmogus& other) : vardas_(other.vardas_),pavarde_(other.pavarde_) {}
+    Zmogus& operator=(const Zmogus& other) {
+    if (this != &other) {
+        vardas_ = other.vardas_;
+        pavarde_ = other.pavarde_;
+        }
+    return *this;
+    }
+
+
+    string get_vardas() const { return vardas_; }
+    string get_pavarde() const { return pavarde_; }
+    void setVardas(const string& vardas) { vardas_ = vardas; }
+    void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
+
+
+
+};
+
+class Student: public Zmogus {
+private:
+
     vector<int> nd_;
     int egzaminas_ = 0;
     double galutinis_ = 0.0;
 
 public:
     Student() = default;
-    Student(const string& vardas, const string& pavarde) : vardas_(vardas), pavarde_(pavarde) {}
+
 
     Student(const Student& other)
-        : vardas_(other.vardas_), pavarde_(other.pavarde_),
-          nd_(other.nd_), egzaminas_(other.egzaminas_),
+        : Zmogus(other),
+          nd_(other.nd_),
+          egzaminas_(other.egzaminas_),
           galutinis_(other.galutinis_) {}
 
 
     Student& operator=(const Student& other) {
         if (this != &other) {
-            vardas_ = other.vardas_;
-            pavarde_ = other.pavarde_;
+            Zmogus::operator=(other);
             nd_ = other.nd_;
             egzaminas_ = other.egzaminas_;
             galutinis_ = other.galutinis_;
@@ -35,15 +62,13 @@ public:
     friend istream& operator>>(istream& in, Student& student);
     friend ostream& operator<<(ostream& out, const Student& student);
 
-    string get_vardas() const { return vardas_; }
-    string get_pavarde() const { return pavarde_; }
+
     vector<int> get_nd() const { return nd_; }
     int get_egzaminas() const { return egzaminas_; }
     double get_galutinis() const { return galutinis_; }
 
 
-    void setVardas(const string& vardas) { vardas_ = vardas; }
-    void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
+
     void addNd(int grade) { nd_.push_back(grade); }
     void setEgzaminas(int grade) { egzaminas_ = grade; }
     void setGalutinis(double balas) { galutinis_ = balas; }
